@@ -3,6 +3,28 @@
 
 
 
+function updateResults(content) {
+  const resultsDiv = document.querySelector('#results');
+  resultsDiv.innerHTML = content;
+}
+
+
+
+function endResult(end_result) {
+  const endResultDiv = document.querySelector('#endResult');
+  endResultDiv.innerHTML = end_result;
+}
+
+
+
+
+
+
+
+
+
+
+
 function getComputerChoice(){
   computer_move = Math.floor(Math.random()*3);
   if(computer_move==0){
@@ -17,71 +39,124 @@ function getComputerChoice(){
 }
 
 
+function setupPlayerMoveButtons(){
+
+  const btn1 = document.querySelector('#btn1');
+  btn1.addEventListener("click", () => {
+    playRound("ROCK", getComputerChoice());
+  });
+  
+  const btn2 = document.querySelector("#btn2");
+  btn2.addEventListener("click", () => {
+    playRound("PAPER", getComputerChoice());
+  });
+  
+  const btn3 = document.querySelector("#btn3");
+  btn3.addEventListener("click", () => {
+    playRound("SCISSORS", getComputerChoice());
+  });
+  }
+
+
+
+
+let computer_score = 0;
+let player_score = 0;
+
 function playRound(playerSelection, computerSelection){
 
-computerSelection = getComputerChoice();
-playerSelection = prompt("what will you play: Rock, Paper or Scissors?");
-playerSelectionCase = playerSelection.toUpperCase();
+const resultsDiv = document.querySelector("#results");
+const runningPlayerScoreDiv = document.querySelector("#runningPlayerScore");
+const runningComputerScoreDiv = document.querySelector("#runningComputerScore");
 
 
 
 
-if(playerSelectionCase==computerSelection){
-  console.log("DRAW");
-  return(0);
+if(playerSelection==computerSelection){
+  updateResults("Draw");
 }
-if(playerSelectionCase=="ROCK" && computerSelection=="SCISSORS"){
-  console.log("You Win, Rock Beats Scissors");
-  return(1);
+
+let result = 0;
+
+if(playerSelection=="ROCK" && computerSelection=="SCISSORS"){
+  updateResults("You Win, Rock Beats Scissors");
+  result = 1;
 }
-if(playerSelectionCase=="ROCK" && computerSelection=="PAPER"){
-  console.log("You Lose, Paper Beats Rock");
-  return(-1);
+if(playerSelection=="ROCK" && computerSelection=="PAPER"){
+  updateResults("You Lose, Paper Beats Rock");
+  result = -1;
 }
-if(playerSelectionCase=="PAPER" && computerSelection=="ROCK"){
-  console.log("You Win, Paper Beats Rock");
-  return(1);
+if(playerSelection=="PAPER" && computerSelection=="ROCK"){
+  updateResults("You Win, Paper Beats Rock");
+  result = 1;
   
 }
-if(playerSelectionCase=="PAPER" && computerSelection=="SCISSORS"){
-  console.log("You Lose, Scissors Beats Paper");
-  return(-1);
+if(playerSelection=="PAPER" && computerSelection=="SCISSORS"){
+  updateResults("You Lose, Scissors Beats Paper");
+  result = -1;
 }
-if(playerSelectionCase=="SCISSORS" && computerSelection=="PAPER"){
-  console.log("You Win, Scissors Beats Paper");
-  return(1);
+if(playerSelection=="SCISSORS" && computerSelection=="PAPER"){
+  updateResults("You Win, Scissors Beats Paper");
+  result = 1;
 }
-if(playerSelectionCase=="SCISSORS" && computerSelection=="ROCK"){
-  console.log("You Lose, Rock beats Scissors");
-  return(-1);
+if(playerSelection=="SCISSORS" && computerSelection=="ROCK"){
+  updateResults("You Lose, Rock beats Scissors");
+  result = -1;
 }
+
+if(result==1){
+  player_score = player_score + 1;
+  runningPlayerScore();
+  
+}
+else if (result == -1){
+  computer_score = computer_score + 1;
+  runningComputerScore();
+
+}
+
+if(player_score === 5 || computer_score === 5){
+  resultsDiv.style.visibility = "hidden";
+  runningPlayerScoreDiv.style.visibility = "hidden";
+  runningComputerScoreDiv.style.visibility = "hidden";
+}
+else{
+  resultsDiv.style.visibility = "visible";
+  runningPlayerScoreDiv.style.visibility = "visible";
+  runningComputerScoreDiv.style.visibility = "visible";
+}
+
+if(player_score==5){
+  endResult("You Win, Computer Loses");
+
+}
+else if(computer_score==5){
+  endResult("You Lose, Computer Wins")
+}
+
 }
 
 
-function game(){
-computer_score = 0;
-player_score = 0;
-for (let i = 0; i < 5; i++){
-  const result = playRound();
-  if(result == 1){
-    player_score = player_score + 1;
-    
+
+
+function runningComputerScore() {
+  const runningScoreDiv = document.querySelector('#runningComputerScore');
+  runningScoreDiv.innerHTML = `Computer Score: ${computer_score}`;
   }
- else if(result==-1){
-   computer_score = computer_score + 1;
- }
-}
-if(player_score>computer_score){
-  return("you win")
-}
-else if(computer_score>player_score){
-  return("you lose")
-}
-else if(computer_score == player_score){
-  return("its a draw")
-}
-  
-}
 
-console.log(game())
 
+function runningPlayerScore() {
+  const runningScoreDiv = document.querySelector('#runningPlayerScore');
+  runningScoreDiv.innerHTML = `Player Score: ${player_score}`;
+  }
+
+
+
+
+
+
+
+
+
+
+setupPlayerMoveButtons();
