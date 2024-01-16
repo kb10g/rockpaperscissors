@@ -1,0 +1,84 @@
+body{
+    margin: 0;
+}
+
+#header{
+    background-color: #111720;
+    height: 20vh;
+    width: 100vw;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+#header-text{
+    font-size: xx-large;
+}
+
+#content{
+    background-color: #222831;
+    height: 80vh;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+#results{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+}
+
+#running-player-score,#running-computer-score{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+
+}
+
+#player-score-box{
+    display: flex;
+    flex-direction: column;
+}
+
+#playre-score-box{
+    display: flex;
+    flex-direction: column;
+}
+
+#player-choice,#computer-choice{
+    font-size: 80px;
+}
+
+#score-choice{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#player-button-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#rock-div,#paper-div,#scissors-div{
+    font-size: 60px;
+}
+
+#rock-button,#paper-button,#scissors-button{
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #393e46;
+    width: 160px;
+    height: 160px;
+    border: none;
+    outline: none;
+}
