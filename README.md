@@ -1,3 +1,3 @@
-# rockpaperscissors
+# Rock, Paper, Scissors
 
-rock paper scissors with ui,
+A game of Rock, Paper, Scissors made with HTML, CSS, and JavaScript.
